@@ -76,8 +76,8 @@ class Dog:
         """
 
         dog = CURSOR.execute(sql, (name,)).fetchone()
-
-        return cls.new_from_db(dog)
+        if dog:
+            return cls.new_from_db(dog)
 
     @classmethod
     def find_by_id(cls, id):
@@ -115,5 +115,5 @@ class Dog:
         WHERE id = ?
         """
         CURSOR.execute(sql, (self.name, self.breed, self.id))
-
-    
+        
+        
